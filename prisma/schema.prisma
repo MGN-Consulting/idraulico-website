@@ -1,0 +1,22 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Appointment {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  email       String
+  phone       String
+  date        DateTime
+  timeSlot    String
+  issueType   String
+  notes       String?
+  googleCalId String?  // ID dell'evento sincronizzato in Google Calendar
+  status      String   @default("confirmed") // pending, confirmed, cancelled
+  createdAt   DateTime @default(now())
+}
