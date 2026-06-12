@@ -3,8 +3,9 @@
 import Image from 'next/image';
 import React from 'react';
 import {
+  Bubbles,
   Building2,
-  CalendarCheck,
+  CalendarCheck, Dam, Drill,
   Flame,
   Phone,
   ShieldCheck,
@@ -33,7 +34,7 @@ const services = [
   {
     icon: Snowflake,
     imageURL: '/pics/1.jpg',
-    title: 'Centrali frigorifere',
+    title: 'Climatizzazione',
     text: 'Tubazioni, collegamenti e montaggi per impianti frigoriferi civili, tecnici e produttivi.',
   },
   {
@@ -52,7 +53,7 @@ const services = [
     icon: Zap,
     imageURL: '/pics/tubazioni-inox.jpg',
     title: 'Tubazioni INOX AISI 316/304',
-    text: 'Lavorazioni su acciaio inox con saldatori patentati TIG ed elettrodo, anche per direttiva PED.',
+    text: 'Inserimento impianti inox per mezzo di saldatura TIG, lettura di eventuale disegno.',
   },
 ];
 
@@ -149,7 +150,7 @@ export default function Home() {
                 </a>
               </div>
               <div className="trust-row">
-                <span><ShieldCheck size={17}/> Saldatori patentati TIG ed elettrodo</span>
+                <span><ShieldCheck size={17}/> Saldatori patentati TIG</span>
                 <span><ShieldCheck size={17}/> Certificazione direttiva PED</span>
               </div>
             </div>
@@ -171,11 +172,8 @@ export default function Home() {
           <div className="container">
             <div className="section-heading">
               <span className="eyebrow">Servizi</span>
-              <h2>Montaggi e impianti eseguiti con competenza tecnica</h2>
-              <p>
-                Una panoramica chiara delle lavorazioni principali, pensata per parlare sia
-                a clienti civili sia ad aziende, progettisti e responsabili tecnici.
-              </p>
+              <h2>Compentenze tecniche</h2>
+              <p></p>
             </div>
 
             <div className="service-grid">
@@ -189,10 +187,10 @@ export default function Home() {
             </div>
 
             <div className="credentials-strip">
-              <span><Sprout size={18}/> Condizionamento civile</span>
-              <span><ShieldCheck size={18}/> Direttiva PED</span>
-              <span><Zap size={18}/> TIG ed elettrodo</span>
-              <span><Wrench size={18}/> INOX AISI 316/304</span>
+              <span><Bubbles size={18}/> Trattamento Acqua/Osmosi</span>
+              <span><Zap size={18}/> Saldature TIG</span>
+              <span><Drill size={18}/> Carotaggio</span>
+              <span><Sprout size={18}/> Attenti all'ambiente</span>
             </div>
           </div>
         </section>
@@ -202,7 +200,7 @@ export default function Home() {
             <div className="section-heading split-heading">
               <div className="booking-copy">
                 <span className="eyebrow">Galleria lavori</span>
-                <h2>Cantieri completati e lavorazioni reali</h2>
+                <h2>Lavorazioni reali</h2>
               </div>
               <p>
                 Comprovata esperienza nella realizzazione, nel montaggio e nella manutenzione

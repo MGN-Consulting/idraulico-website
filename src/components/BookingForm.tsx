@@ -8,7 +8,7 @@ export default function BookingForm() {
     name: '',
     phone: '',
     email: '',
-    issueType: 'Impianto idrotermo sanitario',
+    issueType: 'Servizi di manutenzione',
     date: '',
     timeSlot: 'Mattina',
     notes: '',
@@ -49,7 +49,7 @@ export default function BookingForm() {
         name: '',
         phone: '',
         email: '',
-        issueType: 'Impianto idrotermo sanitario',
+        issueType: 'Servizi di manutenzione',
         date: '',
         timeSlot: 'Mattina',
         notes: '',
@@ -105,14 +105,9 @@ export default function BookingForm() {
                 <label className="booking-field">
                   <span className="booking-label">Tipo intervento</span>
                   <select name="issueType" value={formData.issueType} onChange={handleInputChange} className="booking-select">
-                    <option value="Impianto idrotermo sanitario">Impianto idrotermo sanitario</option>
-                    <option value="Condizionamento civile">Condizionamento civile</option>
-                    <option value="Centrale termica">Centrale termica</option>
-                    <option value="Centrale frigorifera">Centrale frigorifera</option>
-                    <option value="Impianto antincendio">Impianto antincendio</option>
-                    <option value="Tubazioni INOX AISI 316/304">Tubazioni INOX AISI 316/304</option>
-                    <option value="Carpenteria medio leggera">Carpenteria medio leggera</option>
-                    <option value="Altro">Altro</option>
+                    <option value="Servizi di manutenzione">Servizi di manutenzione</option>
+                    <option value="Montaggio">Montaggio</option>
+                    <option value="Assistenza">Assistenza</option>
                   </select>
                 </label>
               </div>
