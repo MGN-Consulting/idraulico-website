@@ -99,9 +99,56 @@ const extraServices = [
   },
 ];
 
+interface ServiceItem {
+  icon: React.ComponentType<{ size?: number; className?: string }>;
+  title: string;
+  text: string;
+}
+
+function AccordionItem({ service, isExpanded, onToggle }: { service: ServiceItem; isExpanded: boolean; onToggle: () => void }) {
+  return (
+    <div className={`accordion-item ${isExpanded ? 'expanded' : ''}`}>
+      <button 
+        className="accordion-header"
+        onClick={onToggle}
+        aria-expanded={isExpanded}
+      >
+        <span className="accordion-title-block">
+          <service.icon size={20} className="accordion-icon" />
+          <span className="accordion-title">{service.title}</span>
+        </span>
+        <span className="accordion-chevron">
+          {isExpanded ? '−' : '+'}
+        </span>
+      </button>
+      <div className="accordion-content">
+        <div className="accordion-inner">
+          <p>{service.text}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileServicesAccordion({ servicesList }: { servicesList: ServiceItem[] }) {
+  const [expandedIndex, setExpandedIndex] = React.useState<number | null>(null);
+
+  return (
+    <div className="services-accordion-mobile">
+      {servicesList.map((service, index) => (
+        <AccordionItem
+          key={service.title}
+          service={service}
+          isExpanded={expandedIndex === index}
+          onToggle={() => setExpandedIndex(expandedIndex === index ? null : index)}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function Home() {
   const [activeSlide, setActiveSlide] = React.useState(0);
-  const [expandedService, setExpandedService] = React.useState<number | null>(null);
   const [heroImageIndex, setHeroImageIndex] = React.useState(0);
   const touchStartX = React.useRef(0);
   const touchEndX = React.useRef(0);
@@ -268,36 +315,7 @@ export default function Home() {
             </div>
 
             {/* Mobile Services Accordion */}
-            <div className="services-accordion-mobile">
-              {[...services, ...extraServices].map((service, index) => {
-                const isExpanded = expandedService === index;
-                return (
-                  <div 
-                    className={`accordion-item ${isExpanded ? 'expanded' : ''}`} 
-                    key={service.title}
-                  >
-                    <button 
-                      className="accordion-header"
-                      onClick={() => setExpandedService(isExpanded ? null : index)}
-                      aria-expanded={isExpanded}
-                    >
-                      <span className="accordion-title-block">
-                        <service.icon size={20} className="accordion-icon" />
-                        <span className="accordion-title">{service.title}</span>
-                      </span>
-                      <span className="accordion-chevron">
-                        {isExpanded ? '−' : '+'}
-                      </span>
-                    </button>
-                    <div className="accordion-content">
-                      <div className="accordion-inner">
-                        <p>{service.text}</p>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+            <MobileServicesAccordion servicesList={[...services, ...extraServices]} />
 
             <div className="credentials-strip">
               <span><Bubbles size={18}/> Trattamento Acqua/Osmosi</span>

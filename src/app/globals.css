@@ -207,6 +207,15 @@ p {
   align-items: center;
 }
 
+.hero-bg {
+  z-index: 0;
+}
+
+.hero-section .container {
+  position: relative;
+  z-index: 2;
+}
+
 .hero-grid,
 .booking-layout {
   display: grid;
@@ -809,6 +818,8 @@ p {
   box-shadow: var(--shadow-soft);
   overflow: hidden;
   transition: border-color 0.3s ease;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .accordion-header {
@@ -851,6 +862,9 @@ p {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease-in-out;
+  will-change: max-height;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .accordion-item.expanded .accordion-content {
@@ -1013,8 +1027,15 @@ p {
   }
 
   .hero-section {
+    background: linear-gradient(#ffffff7a, #dceff4b3);
     min-height: auto;
     padding: 118px 0 62px;
+    display: block;
+  }
+
+  .hero-bg,
+  .hero-overlay {
+    display: none !important;
   }
 
   .hero-grid,
