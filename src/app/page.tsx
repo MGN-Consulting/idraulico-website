@@ -168,7 +168,7 @@ export default function Home() {
       <nav className="navbar clean-navbar"
            style={{ top: 0, left: 0, right: 0, width: '100%', transform: 'none', borderRadius: 0 }}>
         <a className="navbar-brand" href="#" aria-label="L&apos;IDRAULICO di Bozzi Antonio">
-          <Image src="/logo4.png" alt="" width={44} height={44} className="brand-mark" priority/>
+          <Image src="/opaque-v2-nobg.png" alt="" width={44} height={44} className="brand-mark" priority/>
           <span>
             <span className="navbar-title">L&apos;IDRAULICO</span>
             <span className="navbar-subtitle">di Bozzi Antonio</span>

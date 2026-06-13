@@ -8,7 +8,7 @@ export default function Footer() {
       <div className="container footer-grid">
         <div className="footer-col">
           <div className="footer-brand">
-            <Image src="/logo4.png" alt="" width={42} height={42} className="brand-mark" />
+            <Image src="/opaque-v2-nobg.png" alt="" width={42} height={42} className="brand-mark"/>
             <div>
               <h3>L&apos;IDRAULICO</h3>
               <span>di Bozzi Antonio</span>
