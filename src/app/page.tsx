@@ -76,7 +76,70 @@ const gallerySlots = [
   }
 ];
 
+const extraServices = [
+  {
+    icon: Bubbles,
+    title: 'Trattamento Acqua/Osmosi',
+    text: "Sistemi professionali di filtrazione e addolcimento dell'acqua per uso domestico e industriale, inclusi impianti a osmosi inversa per garantire acqua pura e sicura.",
+  },
+  {
+    icon: Zap,
+    title: 'Saldature TIG',
+    text: 'Saldature ad alta precisione con metodo TIG (Tungsten Inert Gas) eseguite da personale qualificato e munito di patentino su acciaio inox, ferro e leghe.',
+  },
+  {
+    icon: Drill,
+    title: 'Carotaggio',
+    text: 'Foratura professionale di murature e cemento armato con carotatrici ad acqua o a secco per il passaggio ordinato di tubazioni e condotti di aerazione.',
+  },
+  {
+    icon: Sprout,
+    title: "Attenti all'ambiente",
+    text: "Progettazione e posa orientate all'efficienza energetica e alla sostenibilità, utilizzando materiali eco-compatibili e riducendo al minimo gli sprechi energetici.",
+  },
+];
+
 export default function Home() {
+  const [activeSlide, setActiveSlide] = React.useState(0);
+  const [expandedService, setExpandedService] = React.useState<number | null>(null);
+  const [heroImageIndex, setHeroImageIndex] = React.useState(0);
+  const touchStartX = React.useRef(0);
+  const touchEndX = React.useRef(0);
+
+  // Gallery slider auto loop
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setActiveSlide((prev) => (prev + 1) % gallerySlots.length);
+    }, 3500);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Hero image fade loop
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setHeroImageIndex((prev) => (prev + 1) % gallerySlots.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    if (diff > 50) {
+      setActiveSlide((prev) => (prev + 1) % gallerySlots.length);
+    } else if (diff < -50) {
+      setActiveSlide((prev) => (prev - 1 + gallerySlots.length) % gallerySlots.length);
+    }
+  };
+
   const handleScrollTo = (event: React.MouseEvent, id: string) => {
     event.preventDefault();
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -156,9 +219,24 @@ export default function Home() {
             </div>
 
             <div className="hero-media" aria-label="Area immagine principale">
-              <div className="hero-image-placeholder">
-                <Image src={"/pics/principale.jpg"} alt={"Foto Intervento Pincipale"} fill
-                       style={{ objectFit: 'cover' }} priority/>
+              <div className="hero-image-placeholder" style={{ position: 'relative', overflow: 'hidden' }}>
+                {gallerySlots.map((slot, index) => (
+                  <Image
+                    key={slot.imageURL}
+                    src={slot.imageURL}
+                    alt={slot.title}
+                    fill
+                    sizes="(max-width: 900px) 100vw, 50vw"
+                    style={{
+                      objectFit: 'cover',
+                      opacity: index === heroImageIndex ? 1 : 0,
+                      transition: 'opacity 1s ease-in-out',
+                      position: 'absolute',
+                      inset: 0
+                    }}
+                    priority={index === 0}
+                  />
+                ))}
               </div>
               <div className="hero-media-card">
                 <strong>Dal civile al tecnico-industriale</strong>
@@ -176,14 +254,49 @@ export default function Home() {
               <p></p>
             </div>
 
-            <div className="service-grid">
+            {/* Desktop Services Grid */}
+            <div className="service-grid hidden-mobile-services">
               {services.map((service) => (
                 <article className="service-card" key={service.title}>
                   <service.icon size={24}/>
-                  <h3>{service.title}</h3>
-                  <p>{service.text}</p>
+                  <div className="service-content">
+                    <h3>{service.title}</h3>
+                    <p>{service.text}</p>
+                  </div>
                 </article>
               ))}
+            </div>
+
+            {/* Mobile Services Accordion */}
+            <div className="services-accordion-mobile">
+              {[...services, ...extraServices].map((service, index) => {
+                const isExpanded = expandedService === index;
+                return (
+                  <div 
+                    className={`accordion-item ${isExpanded ? 'expanded' : ''}`} 
+                    key={service.title}
+                  >
+                    <button 
+                      className="accordion-header"
+                      onClick={() => setExpandedService(isExpanded ? null : index)}
+                      aria-expanded={isExpanded}
+                    >
+                      <span className="accordion-title-block">
+                        <service.icon size={20} className="accordion-icon" />
+                        <span className="accordion-title">{service.title}</span>
+                      </span>
+                      <span className="accordion-chevron">
+                        {isExpanded ? '−' : '+'}
+                      </span>
+                    </button>
+                    <div className="accordion-content">
+                      <div className="accordion-inner">
+                        <p>{service.text}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
 
             <div className="credentials-strip">
@@ -208,8 +321,9 @@ export default function Home() {
               </p>
             </div>
 
-            <div className="gallery-grid">
-              {gallerySlots.map((slot, index) => (
+            {/* Desktop Gallery Grid */}
+            <div className="gallery-grid hidden-mobile-gallery">
+              {gallerySlots.map((slot) => (
                 <figure className="image-slot" key={slot.title}>
                   <div className="image-slot-surface">
                     <Image
@@ -225,6 +339,48 @@ export default function Home() {
                   </figcaption>
                 </figure>
               ))}
+            </div>
+
+            {/* Mobile Auto-Looping Slider */}
+            <div 
+              className="mobile-gallery-slider"
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+            >
+              <div 
+                className="slider-track" 
+                style={{ transform: `translateX(-${activeSlide * 100}%)` }}
+              >
+                {gallerySlots.map((slot) => (
+                  <div className="slide-item" key={slot.title}>
+                    <figure className="slide-image-slot">
+                      <div className="slide-image-surface">
+                        <Image
+                          src={slot.imageURL}
+                          alt={`Foto servizio: ${slot.title}`}
+                          fill
+                          sizes="100vw"
+                          style={{ objectFit: 'cover' }}
+                        />
+                      </div>
+                      <figcaption className="slide-media-card">
+                        <strong>{slot.title}</strong>
+                      </figcaption>
+                    </figure>
+                  </div>
+                ))}
+              </div>
+              <div className="slider-dots">
+                {gallerySlots.map((_, index) => (
+                  <button
+                    key={index}
+                    className={`slider-dot ${index === activeSlide ? 'active' : ''}`}
+                    onClick={() => setActiveSlide(index)}
+                    aria-label={`Slide ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
