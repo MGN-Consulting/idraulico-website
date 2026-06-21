@@ -33,7 +33,7 @@ export default function BookingForm() {
     setSubmitStatus('idle');
 
     try {
-      const response = await fetch('/api/appointments', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
@@ -146,7 +146,7 @@ export default function BookingForm() {
               </button>
 
               {submitStatus === 'error' && (
-                <p className="form-error">Errore temporaneo. Puoi chiamare direttamente il 347 123 4567.</p>
+                <p className="form-error">Errore temporaneo. Puoi chiamare direttamente il 349 237 1061.</p>
               )}
             </form>
           )}
