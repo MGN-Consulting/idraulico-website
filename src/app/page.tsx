@@ -242,7 +242,7 @@ export default function Home() {
             <a href="#prenotazione" onClick={(e) => handleScrollTo(e, 'prenotazione')}>Contatto</a>
           </div>
 
-          <a href="tel:+393492371061" className="btn-copper navbar-emergency btn-phone" onClick={() => gtag('event','conversion',{'send_to':'AW-18260339354/5ooiCM7b9cQcEJrVmoNE'})})}>
+          <a href="tel:+393492371061" className="btn-copper navbar-emergency btn-phone" onClick={() => gtag('event','conversion',{'send_to':'AW-18260339354/5ooiCM7b9cQcEJrVmoNE'})}>
             <Phone size={16}/>
             349 237 1061
           </a>
@@ -343,7 +343,7 @@ export default function Home() {
                 <span><Bubbles size={18}/> Trattamento Acqua/Osmosi</span>
                 <span><Zap size={18}/> Saldature TIG</span>
                 <span><Drill size={18}/> Carotaggio</span>
-                <span><Sprout size={18}/> Attenti all'ambiente</span>
+                <span><Sprout size={18}/> Attenti all&#39;ambiente</span>
               </div>
             </div>
           </section>
