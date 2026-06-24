@@ -72,7 +72,7 @@ export default function BookingForm() {
             Lascia pochi dettagli e verrai ricontattato per confermare disponibilità,
             tempi e preventivo. Per lavorazioni tecniche o urgenze resta meglio chiamare.
           </p>
-          <a href="tel:+393492371061" className="contact-number">349 237 1061</a>
+          <a href="tel:+393492371061" className="contact-number" onClick={() => gtag('event','conversion',{'send_to':'AW-18260339354/5ooiCM7b9cQcEJrVmoNE'})}>349 237 1061</a>
         </div>
 
         <div className="booking-card glass-card">

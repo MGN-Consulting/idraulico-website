@@ -28,7 +28,7 @@ export default function Footer() {
 
         <div className="footer-col">
           <h4>Contatti</h4>
-          <a href="tel:+393492371061">349 237 1061</a>
+          <a href="tel:+393492371061" className="footer-link" onClick={() => gtag('event','conversion',{'send_to':'AW-18260339354/5ooiCM7b9cQcEJrVmoNE'})}>349 237 1061</a>
           <a href="mailto:lidraulicobozzi@gmail.com">lidraulicobozzi@gmail.com</a>
           <span>Modena e provincia</span>
         </div>
