@@ -18,7 +18,7 @@ import {
 import BookingForm from '@/components/BookingForm';
 import Footer from '@/components/Footer';
 import TrustWall from '@/components/TrustWall';
-import Head from "next/head";
+import { Analytics } from "@vercel/analytics/next";
 
 const services = [
   {
@@ -200,6 +200,7 @@ export default function Home() {
 
   return (
     <>
+      <Analytics/>
       <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-18260339354" />
       <Script id="google-ads" strategy="lazyOnload">
         {`window.dataLayer = window.dataLayer || [];
