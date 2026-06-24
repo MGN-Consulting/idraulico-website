@@ -242,7 +242,7 @@ export default function Home() {
             <a href="#prenotazione" onClick={(e) => handleScrollTo(e, 'prenotazione')}>Contatto</a>
           </div>
 
-          <a href="tel:+393492371061" className="btn-copper navbar-emergency btn-phone" onClick={() => gtag('event','conversion',{'send_to':'AW-18260339354/5ooiCM7b9cQcEJrVmoNE'})}>
+          <a href="tel:+393492371061" className="btn-copper navbar-emergency btn-phone" onClick={() => gtag('event','conversion',{'send_to':'AW-18260339354/5ooiCM7b9cQcEJrVmoNE'})})}>
             <Phone size={16}/>
             349 237 1061
           </a>
