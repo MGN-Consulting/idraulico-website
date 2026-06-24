@@ -19,6 +19,7 @@ import BookingForm from '@/components/BookingForm';
 import Footer from '@/components/Footer';
 import TrustWall from '@/components/TrustWall';
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const services = [
   {
@@ -200,6 +201,7 @@ export default function Home() {
 
   return (
     <>
+      <SpeedInsights/>
       <Analytics/>
       <Script async src="https://www.googletagmanager.com/gtag/js?id=AW-18260339354" />
       <Script id="google-ads" strategy="lazyOnload">
