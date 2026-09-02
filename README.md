@@ -202,7 +202,7 @@ For other hosts, see the [Next.js deployment docs](https://nextjs.org/docs/app/b
 
 ## License
 
-Copyright 2026 Antonio Bozzi
+Copyright 2026 MGN Consulting
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
